@@ -1,0 +1,12 @@
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\bin\Release\netcoreapp2.0\appsettings.json
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\bin\Release\netcoreapp2.0\AuthorizationServer.deps.json
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\bin\Release\netcoreapp2.0\AuthorizationServer.runtimeconfig.json
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\bin\Release\netcoreapp2.0\AuthorizationServer.runtimeconfig.dev.json
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\bin\Release\netcoreapp2.0\AuthorizationServer.dll
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\bin\Release\netcoreapp2.0\AuthorizationServer.pdb
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\obj\Release\netcoreapp2.0\AuthorizationServer.csprojAssemblyReference.cache
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\obj\Release\netcoreapp2.0\AuthorizationServer.csproj.CoreCompileInputs.cache
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\obj\Release\netcoreapp2.0\AuthorizationServer.AssemblyInfoInputs.cache
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\obj\Release\netcoreapp2.0\AuthorizationServer.AssemblyInfo.cs
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\obj\Release\netcoreapp2.0\AuthorizationServer.dll
+E:\Learning\openiddict-samples-dev\samples\CodeFlow\AuthorizationServer\obj\Release\netcoreapp2.0\AuthorizationServer.pdb

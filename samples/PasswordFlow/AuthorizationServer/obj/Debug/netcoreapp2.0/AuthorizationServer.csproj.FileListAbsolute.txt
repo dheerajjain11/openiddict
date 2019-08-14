@@ -1,0 +1,6 @@
+E:\Learning\openiddict-samples-dev\samples\PasswordFlow\AuthorizationServer\obj\Debug\netcoreapp2.0\AuthorizationServer.csprojAssemblyReference.cache
+E:\Learning\openiddict-samples-dev\samples\PasswordFlow\AuthorizationServer\obj\Debug\netcoreapp2.0\AuthorizationServer.csproj.CoreCompileInputs.cache
+E:\Learning\openiddict-samples-dev\samples\PasswordFlow\AuthorizationServer\obj\Debug\netcoreapp2.0\AuthorizationServer.RazorAssemblyInfo.cache
+E:\Learning\openiddict-samples-dev\samples\PasswordFlow\AuthorizationServer\obj\Debug\netcoreapp2.0\AuthorizationServer.RazorAssemblyInfo.cs
+E:\Learning\openiddict-samples-dev\samples\PasswordFlow\AuthorizationServer\obj\Debug\netcoreapp2.0\AuthorizationServer.AssemblyInfoInputs.cache
+E:\Learning\openiddict-samples-dev\samples\PasswordFlow\AuthorizationServer\obj\Debug\netcoreapp2.0\AuthorizationServer.AssemblyInfo.cs
