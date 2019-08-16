@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace AuthorizationServer
 {
@@ -15,6 +16,11 @@ namespace AuthorizationServer
                     .AddCommandLine(args)
                     .Build())
                 .UseStartup<Startup>()
+                  .ConfigureLogging(logging =>
+                  {
+                      logging.ClearProviders();
+                      logging.AddConsole();
+                  })
                 .Build();
     }
 }

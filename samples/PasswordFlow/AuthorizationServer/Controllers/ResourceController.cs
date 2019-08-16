@@ -1,8 +1,10 @@
 ﻿using System.Threading.Tasks;
 using AuthorizationServer.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using OpenIddict.Server;
 using OpenIddict.Validation;
 
 namespace AuthorizationServer.Controllers
@@ -17,7 +19,7 @@ namespace AuthorizationServer.Controllers
             _userManager = userManager;
         }
 
-        [Authorize(Roles = "User", AuthenticationSchemes = OpenIddictValidationDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("message")]
         public async Task<IActionResult> GetMessage()
         {

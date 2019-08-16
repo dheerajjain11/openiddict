@@ -34,7 +34,7 @@ namespace ClientApp
 
         public static async Task CreateAccountAsync(HttpClient client, string email, string password)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:58795/Account/Register")
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/Account/Register")
             {
                 Content = new StringContent(JsonConvert.SerializeObject(new { email, password }), Encoding.UTF8, "application/json")
             };
@@ -51,7 +51,7 @@ namespace ClientApp
 
         public static async Task<string> GetTokenAsync(HttpClient client, string email, string password)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:58795/connect/token");
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/connect/token");
             request.Content = new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 ["grant_type"] = "password",
@@ -73,7 +73,7 @@ namespace ClientApp
 
         public static async Task<string> GetResourceAsync(HttpClient client, string token)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:58795/api/message");
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5000/api/message");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead);

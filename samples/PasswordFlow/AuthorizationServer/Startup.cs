@@ -84,34 +84,34 @@ namespace AuthorizationServer
                     // Note: to use JWT access tokens instead of the default
                     // encrypted format, the following lines are required:
                     //
-                    //options.UseJsonWebTokens();
-                    //options.AddEphemeralSigningKey();
-                })
+                    options.UseJsonWebTokens();
+                    options.AddEphemeralSigningKey();
+                });
 
-                // Register the OpenIddict validation handler.
-                // Note: the OpenIddict validation handler is only compatible with the
-                // default token format or with reference tokens and cannot be used with
-                // JWT tokens. For JWT tokens, use the Microsoft JWT bearer handler.
-                .AddValidation();
+            // Register the OpenIddict validation handler.
+            // Note: the OpenIddict validation handler is only compatible with the
+            // default token format or with reference tokens and cannot be used with
+            // JWT tokens. For JWT tokens, use the Microsoft JWT bearer handler.
+            //.AddValidation();
 
             // If you prefer using JWT, don't forget to disable the automatic
             // JWT -> WS-Federation claims mapping used by the JWT middleware:
             //
-            //JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-            //JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
 
-            //services.AddAuthentication()
-            //    .AddJwtBearer(options =>
-            //    {
-            //        options.Authority = "http://localhost:58795/";
-            //        options.Audience = "resource_server";
-            //        options.RequireHttpsMetadata = false;
-            //        options.TokenValidationParameters = new TokenValidationParameters
-            //        {
-            //            NameClaimType = OpenIdConnectConstants.Claims.Subject,
-            //            RoleClaimType = OpenIdConnectConstants.Claims.Role
-            //        };
-            //    });
+            services.AddAuthentication()
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "http://localhost:5000/";
+                    options.Audience = "resource-server";
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        NameClaimType = OpenIdConnectConstants.Claims.Subject,
+                        RoleClaimType = OpenIdConnectConstants.Claims.Role
+                    };
+                });
 
             // Alternatively, you can also use the introspection middleware.
             // Using it is recommended if your resource server is in a
