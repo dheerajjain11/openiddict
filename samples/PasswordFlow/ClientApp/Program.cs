@@ -26,9 +26,9 @@ namespace ClientApp
             Console.WriteLine("Access token: {0}", token);
             Console.WriteLine();
 
-            var resource = await GetResourceAsync(client, token);
+            //var resource = await GetResourceAsync(client, token);
+            var resource = await GetResourceAdminAsync(client, token);
             Console.WriteLine("API response: {0}", resource);
-
             Console.ReadLine();
         }
 
@@ -74,6 +74,17 @@ namespace ClientApp
         public static async Task<string> GetResourceAsync(HttpClient client, string token)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5000/api/message");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead);
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public static async Task<string> GetResourceAdminAsync(HttpClient client, string token)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5000/api/messageadmin");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead);

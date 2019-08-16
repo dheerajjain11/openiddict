@@ -19,9 +19,22 @@ namespace AuthorizationServer.Controllers
             _userManager = userManager;
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(Roles = "User", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("message")]
         public async Task<IActionResult> GetMessage()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            return Content($"{user.UserName} has been successfully authenticated.");
+        }
+
+        [Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet("messageadmin")]
+        public async Task<IActionResult> GetMessageForAdmin()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
