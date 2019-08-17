@@ -7,7 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Cryptography.X509Certificates;
 
 namespace AuthorizationServer
 {
@@ -85,7 +87,7 @@ namespace AuthorizationServer
                     // encrypted format, the following lines are required:
                     //
                     options.UseJsonWebTokens();
-                    options.AddEphemeralSigningKey();
+                    options.AddSigningCertificate(LoadCertificate());
                 });
 
             // Register the OpenIddict validation handler.
@@ -137,6 +139,11 @@ namespace AuthorizationServer
             app.UseMvcWithDefaultRoute();
 
             app.UseWelcomePage();
+        }
+
+        private X509Certificate2 LoadCertificate()
+        {
+            return new X509Certificate2(string.Format(@"{0}\certificates\Openiddict.pfx", AppDomain.CurrentDomain.BaseDirectory), "dheer516");
         }
     }
 }

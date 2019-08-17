@@ -97,7 +97,7 @@ namespace AuthorizationServer.Controllers
 
             //ticket.SetResources("resource-server");
             // ticket.SetResources("http://localhost:58795/");
-            ticket.SetResources("resource-server", "http://localhost:5000/");
+            ticket.SetResources("resource-server", "http://localhost:63364/");
             // Note: by default, claims are NOT automatically included in the access and identity tokens.
             // To allow OpenIddict to serialize them, you must attach them a destination, that specifies
             // whether they should be included in access tokens, in identity tokens or in both.

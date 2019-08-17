@@ -34,4 +34,10 @@
     <PackageReference Include="OpenIddict.Mvc" Version="$(OpenIddictVersion)" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Certificates\Openiddict.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

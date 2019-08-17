@@ -25,9 +25,10 @@ namespace ClientApp
             var token = await GetTokenAsync(client, email, password);
             Console.WriteLine("Access token: {0}", token);
             Console.WriteLine();
-
+            // var token = "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc1RllQMVNUWkZXLUJERlpQUVIzVFlYVTE2WVdWMlhLTU5ZWkw5QlciLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiI0YTNiMzM3NC0xOWIyLTQzMzYtYjk2Ny1jYWEwZjliMDQ3MzEiLCJuYW1lIjoiZGhlZXJhai5qYWluQGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwidG9rZW5fdXNhZ2UiOiJhY2Nlc3NfdG9rZW4iLCJqdGkiOiIxYWUzZTY2MC0xYjFmLTRiMGMtOWI3NS01Y2Q5YzY2OTU5YzUiLCJhdWQiOlsicmVzb3VyY2Utc2VydmVyIiwiaHR0cDovL2xvY2FsaG9zdDo2MzM2NC8iXSwibmJmIjoxNTY2MDI0NDE0LCJleHAiOjE1NjYwMjgwMTQsImlhdCI6MTU2NjAyNDQxNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwLyJ9.ISBNPdnHPYsCxHoZVbJchW-G5hjJ6ARf-cl-dABll9OtGXei07fLyJgsomx-WcKT1er5rkwGUXYIj7JewWSFQAbv5PtRJ55EvdLNGJm089_usFPOceih944-E5SvAgvMDIg_KFjobgx4Z7JlFAIiDwLUyO_K8ydXSc8S95emwnhNOk61XpcbvuJmgMwnUeHpLmDHO1HZxtdQz5Ey5rX_W14NVE_pEV9iUAqmP0WNFyOJ7SIPTFDBfclHxNL-os2S9BwzqJcboxQS4WxRpECPrhWzW-CSfjU-Q_TY0k6DrhdEFP9MQTaXGgAZDgiFQfy0U-ANFzlTmG0VNhbbKNAMfA";
             //var resource = await GetResourceAsync(client, token);
-            var resource = await GetResourceAdminAsync(client, token);
+            //var resource = await GetResourceAdminAsync(client, token);
+            var resource = await GetSeparateResourceAsync(client, token);
             Console.WriteLine("API response: {0}", resource);
             Console.ReadLine();
         }
@@ -74,6 +75,17 @@ namespace ClientApp
         public static async Task<string> GetResourceAsync(HttpClient client, string token)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5000/api/message");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead);
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public static async Task<string> GetSeparateResourceAsync(HttpClient client, string token)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:63364/api/values/5");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead);
