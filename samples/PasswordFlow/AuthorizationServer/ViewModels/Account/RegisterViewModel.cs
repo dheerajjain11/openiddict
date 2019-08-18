@@ -14,5 +14,8 @@ namespace AuthorizationServer.ViewModels.Account
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        [Required]
+        public string Role { get; set; }
     }
 }

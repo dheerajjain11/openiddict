@@ -45,7 +45,7 @@ namespace AuthorizationServer.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "User");
+                    await _userManager.AddToRoleAsync(user, model.Role);
                     return Ok();
                 }
                 AddErrors(result);
