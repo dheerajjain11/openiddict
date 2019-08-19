@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AuthorizationServer.Controllers
 {
@@ -43,9 +44,17 @@ namespace AuthorizationServer.Controllers
 
                 user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
+                
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, model.Role);
+                    if (!string.IsNullOrEmpty(model.Role))
+                    {
+                        await _userManager.AddToRoleAsync(user, model.Role);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "User");
+                    }
                     return Ok();
                 }
                 AddErrors(result);
@@ -67,7 +76,7 @@ namespace AuthorizationServer.Controllers
             if (!_databaseChecked)
             {
                 _databaseChecked = true;
-                context.Database.EnsureCreated();
+                context.Database.Migrate();                
                 string[] roleNames = { "Admin", "User", "Reporter" };
 
                 foreach (var roleName in roleNames)

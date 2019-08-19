@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 
 namespace AuthorizationServer
@@ -87,7 +88,8 @@ namespace AuthorizationServer
                     // encrypted format, the following lines are required:
                     //
                     options.UseJsonWebTokens();
-                    options.AddSigningCertificate(LoadCertificate());
+                    options.AddSigningCertificate(Assembly.GetExecutingAssembly().
+                        GetManifestResourceStream("AuthorizationServer.Certificates.Openiddict.pfx"), "dheer516");
                 });
 
             // Register the OpenIddict validation handler.
